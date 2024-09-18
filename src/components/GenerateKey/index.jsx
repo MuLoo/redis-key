@@ -20,7 +20,7 @@ import { parseQueryString } from '../../utils/common'
 import { MD5 } from 'crypto-js';
 import TextCopy from '../TextCopy';
 import Tools from '../Tools'
-const { Option } = Select;
+
 const { Search } = Input;
 const { Text } = Typography;
 const moduleListInit = [
@@ -38,12 +38,6 @@ const moduleListInit = [
   'programYupooAlbums'
 ].map(key => ({ key, value: '' }))
 
-const selectBefore = (
-  <Select style={{ padding: '8px 4px' }} defaultValue="module">
-    <Option value="module">模块</Option>
-    <Option value="api">接口</Option>
-  </Select>
-);
 const Prefix = ({ type = 'set', module }) => (
   <Space.Compact style={{ width: 250 }}>
     <Button size="medium" type='text' >{String(type).toUpperCase()}</Button>
@@ -58,19 +52,22 @@ const ModuleKeyOperation = ({ text, type }) => {
     'hash': 'HGETALL',
     'list': 'LRANGE',
   }
-  return <Flex vertical>
+  return <Flex vertical className={styles.copyTextColor}>
     <Space><Text code>是否存在</Text><TextCopy text={`EXISTS ${text}`} /></Space>
+    <Space><Text code>生存周期</Text><TextCopy text={`TTL ${text}`} /></Space>
     <Space><Text code>查看内容</Text><TextCopy text={`${mapping[type]} ${text} ${type === 'list' ? '0 -1' : ''}`} /></Space>
   </Flex>
 }
 
-const Suffix = ({ text, type = 'set' }) => (
-  <Popover content={<Flex vertical>
-    <ModuleKeyOperation text={text} type={type}  />
-  </Flex>} title="操作">
-    <Button type='primary' size="medium">操作</Button>
-  </Popover>
-)
+const Suffix = ({ text, type = 'set' }) => {
+  return  (
+    <Popover overlayClassName={styles.popover} mouseLeaveDelay="0.3" content={<Flex vertical>
+      <ModuleKeyOperation text={text} type={type}  />
+    </Flex>} title="操作">
+      <Button type='primary' size="medium">操作</Button>
+    </Popover>
+  )
+}
 
 const GenerateKey = () => {
   const [uid, setUserId] = useState('')
@@ -79,6 +76,7 @@ const GenerateKey = () => {
   const [drawerVisible, setDrawerVisible] = useState(false)
   const userIdRef = useRef(null)
   const uriRef = useRef(null)
+
 
   const handleEnter = (inputValue) => {
     if (!inputValue || Number.isNaN(Number(inputValue))) {
@@ -142,7 +140,7 @@ const GenerateKey = () => {
       <Flex vertical gap='middle'>
         <Divider orientation="left">模块缓存</Divider>
         <Search
-          style={{ width: 400 }}
+          style={{ width: 390 }}
           addonBefore="用户ID"
           placeholder="请输入用户ID"
           allowClear
@@ -168,7 +166,7 @@ const GenerateKey = () => {
         </Flex>
       <Flex vertical gap='middle'>
         <Divider orientation="left" className={styles.divider}>接口缓存</Divider>
-        <Space.Compact size="large" style={{ maxWidth: 700, minWidth: 400 }}>
+        <Space.Compact size="large" style={{ maxWidth: 700, minWidth: 390 }}>
           <Input ref={userIdRef}
             onChange={(e) => setUserId(e.target.value)}
             onClear={() => setUriKey('')}

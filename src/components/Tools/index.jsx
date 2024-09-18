@@ -17,10 +17,11 @@ const tipsArr = [
   <Space key='3'><Tag color="purple">查看集群节点</Tag><TextCopy text="CLUSTER NODES" /></Space>,
   <Space key='4'><Tag color="purple">连接的客户端</Tag><TextCopy text="CLIENT LIST" /></Space>,
   <Space key='5'><Tag color="purple">获取redis配置</Tag><TextCopy text="CONFIG GET *" /></Space>,
-  <Space key='6'><Tag color="purple">查看所有key</Tag><Tag color="red">谨慎操作</Tag><TextCopy text="KEYS impress_pagecache_hash:289037:*" /></Space>,
+  <Space key='6'><Tag color="purple">查看满足pattern的key</Tag><Tag color="red">谨慎操作</Tag><TextCopy text="KEYS impress_pagecache_hash:289037:*" /></Space>,
   <Space key='7'><Tag color="purple">查看key生存周期</Tag><TextCopy text="TTL KEY" /></Space>,
   <Space key='8'><Tag color="purple">查看key类型</Tag><TextCopy text="TYPE KEY" /></Space>,
   <Space key='9'><Tag color="purple">持久化key</Tag><TextCopy text="PERSIST KEY" /></Space>,
+  <Space key='10'><Tag color="purple">删除key</Tag><TextCopy text="DEL KEY" /></Space>,
 ]
 
 const Tools = () => {

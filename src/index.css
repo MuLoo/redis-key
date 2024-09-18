@@ -2,6 +2,9 @@ html {
   height: 100vh;
   width: 100vw;
 }
+body {
+  overflow-x: hidden;
+}
 #root {
   padding: 0;
   max-width: 100vw;
@@ -11,13 +14,13 @@ body {
 }
 
 .demo-logo {
-  width: 120px;
+  width: 180px;
   min-width: 120px;
-  height: 32px;
-  background: rgba(255, 255, 255, .2);
+  height: 36px;
+  line-height: 36px;
+  background: #00b96b;
   border-radius: 6px;
   margin-inline-end: 24px;
-  line-height: 32px;
   color: #fff;
   font-size: 16px;
   text-align: center;

@@ -25,17 +25,21 @@ const LayoutTemplate = () => {
           width: '100%',
           display: 'flex',
           alignItems: 'center',
+          background: 'rgba(255,255,255,0.8)',
+          backdropFilter: 'blur(8px)',
+          boxShadow: 'rgb(244 244 244 / 97%) 2px 2px 14px 8px'
         }}
       >
-        <div className="demo-logo" >Redis-Key</div>
+        <div className="demo-logo" >Redis-Key-Generator</div>
         <Menu
-          theme="dark"
+          theme="light"
           mode="horizontal"
           defaultSelectedKeys={['1']}
           items={items}
           style={{
             flex: 1,
             minWidth: 0,
+            background: 'transparent',
           }}
         />
       </Header>
@@ -56,9 +60,8 @@ const LayoutTemplate = () => {
         <div
           style={{
             padding: 24,
-            minHeight: 380,
-            height: 'calc(100vh - 162px)',
-            overflow: 'scroll',
+            // minHeight: 380,
+            minHeight: 'calc(100vh - 162px)',
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
