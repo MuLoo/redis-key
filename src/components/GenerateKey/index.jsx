@@ -45,24 +45,32 @@ const Prefix = ({ type = 'set', module }) => (
   </Space.Compact>
 )
 
-const ModuleKeyOperation = ({ text, type }) => {
+const ModuleKeyOperation = ({ text, type, rKey }) => {
   const mapping = {
     'string': 'GET',
     'set': 'SMEMBERS',
     'hash': 'HGETALL',
     'list': 'LRANGE',
+    'zset': 'ZSCORE'
   }
+  console.log('rKey', rKey)
   return <Flex vertical className={styles.copyTextColor}>
-    <Space><Text code>是否存在</Text><TextCopy text={`EXISTS ${text}`} /></Space>
-    <Space><Text code>生存周期</Text><TextCopy text={`TTL ${text}`} /></Space>
+    <Space><Text code>是否存在</Text><TextCopy text={`EXISTS ${rKey || text}`} /></Space>
+    <Space><Text code>生存周期</Text><TextCopy text={`TTL ${rKey || text}`} /></Space>
     <Space><Text code>查看内容</Text><TextCopy text={`${mapping[type]} ${text} ${type === 'list' ? '0 -1' : ''}`} /></Space>
   </Flex>
 }
-
-const Suffix = ({ text, type = 'set' }) => {
+/**
+ *
+ * @param {String} text 操作命令文本
+ * @param {String} type 操作类型
+ * @param {String} rKey 真正的key
+ * @returns
+ */
+const Suffix = ({ text, type = 'set', rKey = '' }) => {
   return  (
     <Popover overlayClassName={styles.popover} mouseLeaveDelay="0.3" content={<Flex vertical>
-      <ModuleKeyOperation text={text} type={type}  />
+      <ModuleKeyOperation text={text} type={type} rKey={rKey}  />
     </Flex>} title="操作">
       <Button type='primary' size="medium">操作</Button>
     </Popover>
@@ -255,7 +263,7 @@ const GenerateKey = () => {
       <Flex vertical gap='middle'>
         <Divider orientation="left" className={styles.divider}>计数缓存</Divider>
         <Flex vertical gap='middle'>
-          <Text type='secondary' >计数缓存分为：一级分类下相册数量， 相册下图片数量。都比较简单，将  <Text mark>$&#123;xxx&#125;</Text>
+          <Text type='secondary' >计数缓存分为：一级分类下相册数量，二级分类下相册数量(注意：用户的所有二级分类相册数是在一个zset集合里)，相册下图片数量。都比较简单，将  <Text mark>$&#123;xxx&#125;</Text>
             整个替换即可</Text>
           <Space >
             <Tag color="green">一级分类下相册数量</Tag>
@@ -265,6 +273,17 @@ const GenerateKey = () => {
               addonBefore={<Prefix module='Counter' type='string' />}
               addonAfter={<Suffix text={"im_counter#category:${cateId}#uid:" + `${userId}`} type='string' />}
               value={"im_counter#category:${cateId}#uid:" + `${userId}`}
+              variant="filled"
+              style={{ width: 700 }}
+            />
+          </Space>
+          <Space >
+            <Tag color="green">二级分类下相册数量</Tag>
+            <Input
+              className={styles.moduleList}
+              addonBefore={<Prefix module='Counter' type='zset' />}
+              addonAfter={<Suffix text={"impress#cateChild#" + `${userId}` + ' ${childCateId}'} type='zset' rKey={"impress#cateChild#" + `${userId}`} />}
+              value={"impress#cateChild#" + `${userId}`}
               variant="filled"
               style={{ width: 700 }}
             />
