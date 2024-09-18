@@ -4,28 +4,32 @@ import { CopyOutlined } from "@ant-design/icons";
 import styles from './index.module.less'
 const { Text } = Typography;
 
+const copyBackup = (text) => {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    message.success('复制成功');
+  } catch (err) {
+    message.error('复制失败');
+  }
+  document.body.removeChild(textarea);
+}
+
 const TextCopy = ({ text }) => {
   const copy = () => {
-    if (location.protocol === 'https:') {
+    // https下才可以使用原生的navigator.clipboard.writeText
+    if (navigator.clipboard && navigator.clipboard.writeText && typeof navigator.clipboard.writeText === 'function') {
       navigator.clipboard.writeText(text).then(() => {
         message.success('复制成功');
       }).catch(() => {
         message.error('复制失败');
       });
     } else {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        document.execCommand('copy');
-        message.success('复制成功');
-      } catch (err) {
-        message.error('复制失败');
-      }
-      document.body.removeChild(textarea);
+      copyBackup(text);
     }
-
   };
   return (
     <Space size="middle">
