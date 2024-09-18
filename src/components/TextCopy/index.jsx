@@ -6,12 +6,26 @@ const { Text } = Typography;
 
 const TextCopy = ({ text }) => {
   const copy = () => {
-    if (!navigator.clipboard.writeText || typeof navigator.clipboard.writeText !== 'function') return message.info('请使用新版本chrome浏览器');
-    navigator.clipboard.writeText(text).then(() => {
-      message.success('复制成功');
-    }).catch(() => {
-      message.error('复制失败');
-    });
+    if (location.protocol === 'https:') {
+      navigator.clipboard.writeText(text).then(() => {
+        message.success('复制成功');
+      }).catch(() => {
+        message.error('复制失败');
+      });
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        message.success('复制成功');
+      } catch (err) {
+        message.error('复制失败');
+      }
+      document.body.removeChild(textarea);
+    }
+
   };
   return (
     <Space size="middle">
