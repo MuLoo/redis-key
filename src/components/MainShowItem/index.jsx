@@ -5,10 +5,10 @@ import styles from './index.module.less';
 
 const Prefix = ({ type = 'set', module }) => (
   <Space.Compact style={{ width: 250 }}>
-    <Button size="medium" type="text">
+    <Button size="large" type="text">
       {String(type).toUpperCase()}
     </Button>
-    <Button size="medium" type="dashed" style={{ display: 'flex', flex: '1 1 auto', borderRight: 'none' }}>
+    <Button size="large" type="dashed" style={{ display: 'flex', flex: '1 1 auto', borderRight: 'none' }}>
       {module}
     </Button>
   </Space.Compact>
@@ -67,14 +67,14 @@ const Suffix = ({ text, type = 'set', rKey = '' }) => {
       }
       title="操作"
     >
-      <Button type="primary" size="medium" onClick={() => setOpen((open) => !open)}>
+      <Button type="primary" size="large" onClick={() => setOpen((open) => !open)}>
         操作
       </Button>
     </Popover>
   );
 };
 
-const MainShowItem = ({ module, text, rKey, type, width }) => {
+const MainShowItem = ({ module, text, rKey, type, width = 900 }) => {
   const w = typeof width === 'number' ? width : Number(width.replace('px', '')) || 900;
   const [inputValue, setInputValue] = useState(rKey || text);
 
@@ -87,6 +87,7 @@ const MainShowItem = ({ module, text, rKey, type, width }) => {
   };
   return (
     <Input
+      size="large"
       className={styles.moduleList}
       addonBefore={<Prefix module={module} type={type} />}
       addonAfter={<Suffix text={inputValue} type={type} rKey={rKey} />}
