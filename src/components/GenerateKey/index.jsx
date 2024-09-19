@@ -152,7 +152,7 @@ const GenerateKey = () => {
             整个替换即可
           </Text>
           <Space>
-            <Tag color="green"> 相册自定义排序</Tag>
+            <Tag color="green">非隐相册自定义排序</Tag>
             <MainShowItem
               text={`impress#custom_sort_list#{albums:${userId}#extra}`}
               module="CustomSort"
@@ -219,7 +219,7 @@ const GenerateKey = () => {
             />
           </Space>
           <Space>
-            <Tag color="green">相册下图片数量</Tag>
+            <Tag color="green">具体相册下图片数量</Tag>
             <MainShowItem
               text={'im_counter#albums:${albumId}#uid:' + `${userId}`}
               module="Counter"
@@ -243,7 +243,7 @@ const GenerateKey = () => {
               text={`impress-website::cache::http://impress.yupoo-fd3.svc.cluster.fud3:4001/web/category/${userId}@_v=1`}
               module="BFF"
               type="string"
-              width="1200"
+              width="1300"
             />
           </Space>
           <Space>
@@ -254,7 +254,7 @@ const GenerateKey = () => {
               }
               module="BFF"
               type="string"
-              width="1200"
+              width="1300"
             />
           </Space>
           <Space>
@@ -265,7 +265,7 @@ const GenerateKey = () => {
               }
               module="BFF"
               type="string"
-              width="1200"
+              width="1300"
             />
           </Space>
         </Flex>
@@ -294,7 +294,7 @@ const GenerateKey = () => {
         </Divider>
         <Space>
           <Tag color="green">布局缓存</Tag>
-          <MainShowItem text={`wy#impress_website_layout:${userId}`} module="Layout" type="string" width="600" />
+          <MainShowItem text={`wy#impress_website_layout:${userId}`} module="Layout" type="string" width="700" />
         </Space>
       </Flex>
       <Flex vertical gap="middle">
@@ -316,7 +316,7 @@ const GenerateKey = () => {
             <MainShowItem text={`yp:broadcast:${userId}`} module="Password" type="string" width="600" />
           </Space>
           <Space>
-            <Tag color="green">是否开启二级分类</Tag>
+            <Tag color="green">二级分类</Tag>
             <MainShowItem text={`yp:cate:child:${userId}`} module="Password" type="string" width="600" />
           </Space>
         </Flex>
