@@ -1,15 +1,18 @@
 import React from 'react';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link } from 'react-router-dom';
 
 const { Header, Content, Footer } = Layout;
-const items = [{
-  key: '1',
-  label: <Link to='/'>生成KEY</Link>,
-}, {
-  key: '2',
-  label: <Link to='/tool'>常用命令</Link>,
-}];
+const items = [
+  {
+    key: '1',
+    label: <Link to="/">生成KEY</Link>,
+  },
+  {
+    key: '2',
+    label: <Link to="/tool">常用命令</Link>,
+  },
+];
 const LayoutTemplate = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -27,10 +30,10 @@ const LayoutTemplate = () => {
           alignItems: 'center',
           background: 'rgba(255,255,255,0.8)',
           backdropFilter: 'blur(8px)',
-          boxShadow: 'rgb(244 244 244 / 97%) 2px 2px 14px 8px'
+          boxShadow: 'rgb(244 244 244 / 97%) 2px 2px 14px 8px',
         }}
       >
-        <div className="demo-logo" >Redis-Key-Generator</div>
+        <div className="demo-logo">Redis-Key-Generator</div>
         <Menu
           theme="light"
           mode="horizontal"

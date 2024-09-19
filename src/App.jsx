@@ -1,11 +1,9 @@
-import React from 'react';
-import { ConfigProvider } from 'antd';
-import './App.css';
-import Router from './router.jsx';
+import React from "react";
+import { ConfigProvider } from "antd";
+import "./App.css";
+import Router from "./router.jsx";
 
-import {
-  BrowserRouter,
-} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => (
   <ConfigProvider
@@ -20,7 +18,9 @@ const App = () => (
       },
     }}
   >
-      <BrowserRouter ><Router /></BrowserRouter>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   </ConfigProvider>
 );
 
