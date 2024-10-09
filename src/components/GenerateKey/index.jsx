@@ -299,10 +299,12 @@ const GenerateKey = () => {
       </Flex>
       <Flex vertical gap="middle">
         <Divider orientation="left" className={styles.divider}>
-          密码缓存
+          密码等设置缓存
         </Divider>
         <Flex vertical gap="middle">
-          <Text type="secondary">例如相册密码、主页密码、公告内容、是否开启二级分类</Text>
+          <Text type="secondary">
+            例如相册密码、主页密码、公告内容、是否开启二级分类等等。这些数据没有入库，只存在redis
+          </Text>
           <Space>
             <Tag color="green">相册密码</Tag>
             <MainShowItem text={'yp:albums:${albumId}'} module="Password" type="string" width="600" />
@@ -316,8 +318,20 @@ const GenerateKey = () => {
             <MainShowItem text={`yp:broadcast:${userId}`} module="Password" type="string" width="600" />
           </Space>
           <Space>
-            <Tag color="green">二级分类</Tag>
+            <Tag color="green">是否开启二级分类</Tag>
             <MainShowItem text={`yp:cate:child:${userId}`} module="Password" type="string" width="600" />
+          </Space>
+          <Space>
+            <Tag color="green">收否展开分类侧栏</Tag>
+            <MainShowItem text={`yp:cate:sidebar:${userId}`} module="Password" type="string" width="600" />
+          </Space>
+          <Space>
+            <Tag color="green">是否隐藏上传时间</Tag>
+            <MainShowItem text={`yp:hidetime:${userId}`} module="Password" type="string" width="600" />
+          </Space>
+          <Space>
+            <Tag color="green">二级分类是否展开</Tag>
+            <MainShowItem text={`yp:cate:child:NExpand:${userId}`} module="Password" type="string" width="600" />
           </Space>
         </Flex>
       </Flex>
