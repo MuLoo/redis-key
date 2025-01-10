@@ -37,7 +37,6 @@ const GenerateKey = () => {
       setModuleKeyList([]);
       return;
     }
-    console.log('userIDRef', userIdRef.current.input);
     userIdRef.current.value = inputValue;
     setUserId(Number(inputValue));
     const list = moduleListInit.map((item) => {
@@ -226,6 +225,22 @@ const GenerateKey = () => {
               type="string"
               width="700"
             />
+          </Space>
+        </Flex>
+      </Flex>
+      <Flex vertical gap="middle">
+        <Divider orientation="left" className={styles.divider}>
+          存储空间缓存
+        </Divider>
+        <Flex vertical gap="middle">
+          <Text type="secondary">存储空间缓存有两部分，正常图片占用空间和回收站图片占用空间</Text>
+          <Space>
+            <Tag color="green">正常图片占用</Tag>
+            <MainShowItem text={`wy#storage_count#shard:${userId}`} module="SC" type="string" width="700" />
+          </Space>
+          <Space>
+            <Tag color="green">回收站图片占用</Tag>
+            <MainShowItem text={`wy#storage_count#recycle:${userId}`} module="SC" type="string" width="700" />
           </Space>
         </Flex>
       </Flex>
