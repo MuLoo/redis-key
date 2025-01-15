@@ -151,7 +151,16 @@ const GenerateKey = () => {
             整个替换即可
           </Text>
           <Space>
-            <Tag color="green">非隐相册自定义排序</Tag>
+            <Tag color="green">相册自定义排序(隐藏+公开) · 新</Tag>
+            <MainShowItem
+              text={`impress#custom_sort_list_zset#{albums:${userId}#extra}`}
+              module="CustomSort"
+              type="zset"
+              width="800"
+            />
+          </Space>
+          <Space>
+            <Tag color="green">相册自定义排序(隐藏+公开) · 旧</Tag>
             <MainShowItem
               text={`impress#custom_sort_list#{albums:${userId}#extra}`}
               module="CustomSort"

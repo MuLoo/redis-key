@@ -20,7 +20,7 @@ const ModuleKeyOperation = ({ text, type, rKey }) => {
     set: 'SMEMBERS',
     hash: 'HGETALL',
     list: 'LRANGE',
-    zset: 'ZSCORE',
+    zset: 'ZREVRANGE',
   };
   return (
     <Flex vertical className={styles.copyTextColor} gap="small">
