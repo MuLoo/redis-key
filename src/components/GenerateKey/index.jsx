@@ -147,7 +147,7 @@ const GenerateKey = () => {
         <Flex vertical gap="middle">
           <Text type="secondary">
             自定义排序缓存分为：相册自定义排序、隐藏相册自定义排序、分类自定义排序。都比较简单，将{' '}
-            <Text mark>$&#123;xxx&#125;</Text>
+            <Text mark>$&#123;xxx&#125;</Text> 或 <Text mark>&apos;xxx&apos;</Text>
             整个替换即可
           </Text>
           <Space>
@@ -169,7 +169,7 @@ const GenerateKey = () => {
             />
           </Space>
           <Space>
-            <Tag color="green">隐藏相册自定义排序</Tag>
+            <Tag color="green">自定义下隐藏相册key</Tag>
             <MainShowItem
               text={`impress#custom_sort_list#{albums:${userId}#extra}#hidden`}
               module="CustomSort"
@@ -192,7 +192,16 @@ const GenerateKey = () => {
               text={'impress#custom_sort_list#{category_child:${parent_categoryId}#extra}'}
               module="CustomSort"
               type="list"
-              width="800"
+              width="900"
+            />
+          </Space>
+          <Space>
+            <Tag color="green">相册内图片自定义排序</Tag>
+            <MainShowItem
+              text={`impress#custom_sort_list#{'photos_N':${userId}#extra'albumId'}`}
+              module="CustomSort"
+              type="list"
+              width="850"
             />
           </Space>
         </Flex>
